@@ -1,0 +1,11 @@
+# macOS / editors
+.DS_Store
+Thumbs.db
+*.swp
+
+# node (nothing to install — this site has no build step, but just in case)
+node_modules/
+
+# Unrelated design exercise that happens to live in this folder.
+# Not part of the site, and not published.
+Flint*.html

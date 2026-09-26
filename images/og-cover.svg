@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Tablox — a checkup for your crowded browser">
+  <defs>
+    <linearGradient id="sweep" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#19DF96"/>
+      <stop offset="26%" stop-color="#639CFF"/>
+      <stop offset="52%" stop-color="#FDCF06"/>
+      <stop offset="76%" stop-color="#FF6F00"/>
+      <stop offset="100%" stop-color="#FF343A"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#c8ccd2"/>
+      <stop offset="100%" stop-color="#5c626b"/>
+    </linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0v50" fill="none" stroke="#ffffff" stroke-opacity="0.045"/>
+    </pattern>
+    <radialGradient id="glow" cx="18%" cy="78%" r="62%">
+      <stop offset="0%" stop-color="#FF343A" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#FDCF06" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#0a0b0d" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0b0d"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- tab field -->
+  <g opacity="0.5">
+    <g transform="translate(60,86)">
+      <g fill="none" stroke="#ffffff" stroke-opacity="0.14">
+        <rect x="0" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03"/>
+        <rect x="112" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03"/>
+        <rect x="224" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03"/>
+        <rect x="336" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03"/>
+        <rect x="448" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03"/>
+        <rect x="560" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03"/>
+        <rect x="672" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03"/>
+        <rect x="784" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03"/>
+        <rect x="896" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03"/>
+        <rect x="1008" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03"/>
+      </g>
+      <g transform="translate(0,42)">
+        <rect x="0" y="0" width="104" height="34" rx="5" fill="#FF343A" fill-opacity="0.14" stroke="#FF343A" stroke-opacity="0.55"/>
+        <rect x="112" y="0" width="104" height="34" rx="5" fill="#FF343A" fill-opacity="0.14" stroke="#FF343A" stroke-opacity="0.55"/>
+        <rect x="224" y="0" width="104" height="34" rx="5" fill="#FF343A" fill-opacity="0.14" stroke="#FF343A" stroke-opacity="0.55"/>
+        <rect x="336" y="0" width="104" height="34" rx="5" fill="#FF343A" fill-opacity="0.14" stroke="#FF343A" stroke-opacity="0.55"/>
+        <rect x="448" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.1"/>
+        <rect x="560" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.1"/>
+        <rect x="672" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.1"/>
+        <rect x="784" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.1"/>
+        <rect x="896" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.1"/>
+        <rect x="1008" y="0" width="104" height="34" rx="5" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.1"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- wordmark -->
+  <text x="60" y="300" font-family="Archivo, Helvetica Neue, Arial, sans-serif" font-size="150" font-weight="800" letter-spacing="-6" fill="url(#ink)">TABLOX</text>
+
+  <rect x="60" y="336" width="150" height="4" fill="url(#sweep)"/>
+
+  <text x="60" y="404" font-family="Martian Mono, ui-monospace, Menlo, monospace" font-size="25" letter-spacing="3.4" fill="#9ba1a8">A CHECKUP FOR YOUR CROWDED BROWSER</text>
+
+  <text x="60" y="452" font-family="Martian Mono, ui-monospace, Menlo, monospace" font-size="17" letter-spacing="1.6" fill="#626871">TOO MANY TABS? YOUR BROWSER MAY NEED A CHECKUP.</text>
+
+  <!-- the five states -->
+  <g transform="translate(60,510)" font-family="Martian Mono, ui-monospace, Menlo, monospace">
+    <g>
+      <rect x="0" y="0" width="14" height="14" rx="2" fill="#19DF96"/>
+      <text x="26" y="12" font-size="15" fill="#9ba1a8" letter-spacing="1">1–3 FOCUSED</text>
+    </g>
+    <g transform="translate(0,40)">
+      <rect x="0" y="0" width="14" height="14" rx="2" fill="#639CFF"/>
+      <text x="26" y="12" font-size="15" fill="#9ba1a8" letter-spacing="1">4–6 GROWING</text>
+    </g>
+    <g transform="translate(0,80)">
+      <rect x="0" y="0" width="14" height="14" rx="2" fill="#FDCF06"/>
+      <text x="26" y="12" font-size="15" fill="#9ba1a8" letter-spacing="1">7–9 CROWDED</text>
+    </g>
+    <g transform="translate(220,0)">
+      <rect x="0" y="0" width="14" height="14" rx="2" fill="#FF6F00"/>
+      <text x="26" y="12" font-size="15" fill="#9ba1a8" letter-spacing="1">10–12 FRAGMENTED</text>
+    </g>
+    <g transform="translate(220,40)">
+      <rect x="0" y="0" width="14" height="14" rx="2" fill="#FF343A"/>
+      <text x="26" y="12" font-size="15" fill="#9ba1a8" letter-spacing="1">13+ OVERLOADED</text>
+    </g>
+  </g>
+
+  <!-- icon + badge, as the toolbar shows it -->
+  <g transform="translate(972,452)">
+    <rect x="0" y="0" width="96" height="96" rx="6" fill="#109162"/>
+    <rect x="62" y="-10" width="62" height="34" rx="17" fill="#FF343A"/>
+    <text x="93" y="14" font-family="Martian Mono, ui-monospace, Menlo, monospace" font-size="22" font-weight="700" fill="#000" text-anchor="middle">17</text>
+    <text x="48" y="130" font-family="Martian Mono, ui-monospace, Menlo, monospace" font-size="14" letter-spacing="2" fill="#626871" text-anchor="middle">THIS IS NO LONGER A BROWSER</text>
+  </g>
+
+  <g font-family="Martian Mono, ui-monospace, Menlo, monospace" font-size="14" letter-spacing="2.4" fill="#626871">
+    <text x="60" y="600">FREE · OPEN SOURCE · PRIVATE</text>
+    <text x="1140" y="600" text-anchor="end">GITHUB.COM/M5RC238/TABLOX</text>
+  </g>
+
+  <rect x="0.5" y="0.5" width="1199" height="629" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+</svg>

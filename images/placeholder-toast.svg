@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416 260" width="416" height="260" role="img" aria-label="Placeholder for a screenshot of the Tablox in-page toast">
+  <defs>
+    <pattern id="g" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M26 0H0v26" fill="none" stroke="#ffffff" stroke-opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="416" height="260" fill="#101216"/>
+  <rect width="416" height="260" fill="url(#g)"/>
+  <rect x="20" y="20" width="376" height="220" fill="none" stroke="#FDCF06" stroke-opacity="0.5" stroke-dasharray="6 6"/>
+  <path d="M20 60V20h40M356 20h40v40M20 200v40h40M356 240h40v-40" stroke="#626871" stroke-width="1.2" fill="none"/>
+  <g font-family="'Martian Mono', ui-monospace, Menlo, monospace" text-anchor="middle">
+    <text x="208" y="122" fill="#FDCF06" font-size="11" letter-spacing="3.4">PLACEHOLDER</text>
+    <text x="208" y="152" fill="#e9eaec" font-size="16" letter-spacing="1">IN-PAGE TOAST</text>
+    <text x="208" y="180" fill="#626871" font-size="11" letter-spacing="2">416 × 260 · toast.png</text>
+  </g>
+  <text x="20" y="12" font-family="'Martian Mono', ui-monospace, Menlo, monospace" font-size="9.5" letter-spacing="2" fill="#626871">ASSET 03 / TOAST</text>
+</svg>

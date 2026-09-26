@@ -1,6 +1,6 @@
 # tablox.github.io
 
-The landing page for [Tablox](https://github.com/m5rc238/tablox) — a minimal
+The landing page for [Tablox](https://github.com/gettablox/tablox) — a minimal
 browser signal showing how much browser context is currently open.
 
 Static HTML, CSS and JavaScript. No build step, no dependencies, no framework.

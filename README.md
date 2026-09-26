@@ -106,18 +106,30 @@ green to red. It is the extension's colour walk at about twenty times the speed.
 
 ## Deploying
 
-Pages builds this branch from the repository root. If it is not already on:
+This is the `gettablox` organisation's user site — the repository is named
+`gettablox.github.io`, which is what makes the bare `gettablox.github.io` domain
+resolve here rather than at a project sub-path. Pages builds `main` from the
+repository root. If it is ever off:
 
 ```bash
-gh api -X POST repos/m5rc238/tablox.github.io/pages \
-  -f source='{"branch":"main","path":"/"}'
+gh api -X POST repos/gettablox/gettablox.github.io/pages --input - <<'JSON'
+{"source": {"branch": "main", "path": "/"}}
+JSON
 ```
 
-The site is at <https://m5rc238.github.io/tablox.github.io/>.
+The site is at <https://gettablox.github.io/>.
 
-The canonical URL, `og:url`, and `sitemap.xml` all carry that same address. If
-the repository is ever renamed or moved, update those three places in
-`index.html` and `sitemap.xml` plus the two `og:image` paths.
+The canonical URL, `og:url` and `sitemap.xml` all carry that same address, and
+both `og:image` paths are absolute for the same reason. If the repository is
+ever renamed or moved, all six need updating together — a relative `og:image`
+silently fails to render in most link previews, because scrapers fetch it
+without a base URL.
+
+### Why not `tablox.github.io`?
+
+That domain belongs to an unrelated GitHub account and is not available. An
+organisation has to be named after the domain you want, so the closest clean
+root was `gettablox.github.io`.
 
 ## Note on the science section
 

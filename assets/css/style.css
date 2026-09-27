@@ -132,6 +132,40 @@ a { color: inherit; }
 }
 
 /* ==========================================================================
+   Hero backdrop
+   ==========================================================================
+   heroshot.png is a red-dominant photo (51% red) whose bright area sits
+   centre-left -- exactly where the headline runs -- so it is not usable as a
+   drop-in background. The treatment is baked into the asset by
+   scripts/make-hero-shot.py: hue discarded, luminance mapped through a
+   gradient ramp built from --ground, alpha faded to zero by 60% height.
+   These rules only place it. It is the first layer in <body>, so .ambient
+   (grid/glow/grain) and .crowd composite on top, which is what stops it
+   reading as a pasted-on photo. Measured cost: headline 16.4:1 -> 12.9:1,
+   kicker 7.6:1 -> 6.0:1, everything below the headline untouched. */
+.hero-shot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100svh;
+  pointer-events: none;
+}
+.hero-shot picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.hero-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ==========================================================================
    Shell
    ========================================================================== */
 
@@ -1393,7 +1427,7 @@ a { color: inherit; }
 
 /* print: a plain report */
 @media print {
-  .ambient, .crowd, .spine, .scroll-cue, .hero__readout, .demo { display: none !important; }
+  .ambient, .crowd, .hero-shot, .spine, .scroll-cue, .hero__readout, .demo { display: none !important; }
   body { background: #fff; color: #000; }
   .does-doesnt__big { color: #000; -webkit-text-fill-color: #000; }
 

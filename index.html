@@ -35,6 +35,16 @@
 
 <a class="skip" href="#checkup">Skip to the checkup</a>
 
+<!-- hero backdrop: images/heroshot.png, run through a palette duotone and faded
+     out ahead of the headline. Derived by scripts/make-hero-shot.py. Placed
+     first so .ambient and .crowd still composite on top of it. -->
+<div class="hero-shot" aria-hidden="true">
+  <picture>
+    <source srcset="images/hero-shot.webp" type="image/webp">
+    <img src="images/hero-shot.png" width="1448" height="1086" alt="" decoding="async">
+  </picture>
+</div>
+
 <!-- ambient layers: grid, glow, grain -->
 <div class="ambient" aria-hidden="true">
   <div class="ambient__grid"></div>

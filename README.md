@@ -1,4 +1,4 @@
-# tablox.github.io
+# Tablox Landing Page
 
 The landing page for [Tablox](https://github.com/gettablox/tablox) — a minimal
 browser signal showing how much browser context is currently open.

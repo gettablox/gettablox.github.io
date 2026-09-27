@@ -60,8 +60,8 @@
     <li><a href="#observation"><span>00</span> Too many tabs</a></li>
     <li><a href="#checkup"><span>01</span> The checkup</a></li>
     <li><a href="#whats-going-on"><span>02</span> What&rsquo;s going on</a></li>
-    <li><a href="#science"><span>03</span> A little science</a></li>
-    <li><a href="#verdict"><span>04</span> Close tabs?</a></li>
+    <li><a href="#why-tabs"><span>03</span> Why we hoard tabs</a></li>
+    <li><a href="#science"><span>04</span> A little science</a></li>
     <li><a href="#install"><span>05</span> Get Tablox</a></li>
   </ol>
   <a class="spine__cta" href="https://github.com/gettablox/tablox" target="_blank" rel="noopener">GitHub</a>
@@ -83,12 +83,6 @@
       </h1>
 
       <p class="hero__sub" data-reveal>Your browser may need a checkup.</p>
-
-      <div class="hero__beats" data-reveal>
-        <p class="beat">You opened one tab.</p>
-        <p class="beat">Then another.</p>
-        <p class="beat beat--long">Then somehow you&rsquo;re researching 14 unrelated things and keeping them all &ldquo;for later.&rdquo;</p>
-      </div>
 
       <p class="hero__promise" data-reveal>
         Tablox helps you notice when your browser is getting crowded.
@@ -239,50 +233,111 @@
   </section>
 
   <!-- ============================= 03 ============================= -->
-  <section class="section section--rule" id="science">
+  <section class="section" id="why-tabs">
     <div class="shell">
-      <div class="prose prose--sci" data-reveal>
-        <p class="prose__drop">Research on browser use suggests people often keep tabs open as external memory, reminders, and containers for unfinished work.</p>
-        <p>But there&rsquo;s no magic number where tabs suddenly become &ldquo;bad.&rdquo;</p>
-      </div>
+      <div class="essay">
+        <header class="essay__head">
+          <p class="kicker" data-reveal>Why tabs accumulate</p>
+          <h2 class="section__title" data-reveal>Why We Hoard Tabs</h2>
+          <p class="section__lede" data-reveal>
+            A browser tab isn&rsquo;t just a webpage. It can be a reminder, an
+            unfinished task, or something we don&rsquo;t want to lose.
+          </p>
+        </header>
 
-      <blockquote class="pull" data-reveal>
-        <p><span>Six tabs can be fine.</span><br><span>Twenty can be fine.</span></p>
-        <cite>It depends on what you&rsquo;re doing.</cite>
-      </blockquote>
+        <ol class="reasons">
+          <li class="reason" data-reveal>
+            <span class="reason__n" aria-hidden="true">01</span>
+            <h3 class="reason__t">External To-Do Lists</h3>
+            <p class="reason__b">
+              An open tab keeps something visible. Instead of remembering
+              <em>&ldquo;I need to come back to this,&rdquo;</em> the browser
+              remembers for you.
+            </p>
+          </li>
+          <li class="reason" data-reveal>
+            <span class="reason__n" aria-hidden="true">02</span>
+            <h3 class="reason__t">Open Loops</h3>
+            <p class="reason__b">
+              Unfinished tasks can remain mentally active. Keeping the tab open
+              gives that unfinished business a visible place to live.
+            </p>
+          </li>
+          <li class="reason" data-reveal>
+            <span class="reason__n" aria-hidden="true">03</span>
+            <h3 class="reason__t">Loss Aversion &amp; FOMO</h3>
+            <p class="reason__b">
+              Closing a tab can feel like giving up a possibility:
+              <em>What if I need this later?</em> Keeping it open avoids having
+              to make that decision.
+            </p>
+          </li>
+          <li class="reason" data-reveal>
+            <span class="reason__n" aria-hidden="true">04</span>
+            <h3 class="reason__t">Limited Attention</h3>
+            <p class="reason__b">
+              We can only actively attend to a limited amount of information at
+              once. Dozens of open tabs don&rsquo;t necessarily mean dozens of
+              things you&rsquo;re thinking about, but they can represent many
+              competing contexts.
+            </p>
+          </li>
+        </ol>
 
-      <p class="closing-note" data-reveal>Tablox is a <b>behavioral signal, not a brain scanner.</b></p>
+        <div class="essay__split" aria-hidden="true"></div>
 
-      <div class="trio" data-reveal>
-        <figure class="trio__item">
-          <img src="images/placeholder-popup.svg" width="416" height="260"
-               alt="Placeholder: screenshot of the Tablox extension popup." loading="lazy" decoding="async">
-          <figcaption>Click the icon. One short explanation, then it&rsquo;s gone.</figcaption>
-        </figure>
-        <figure class="trio__item">
-          <img src="images/placeholder-toast.svg" width="416" height="260"
-               alt="Placeholder: screenshot of the Tablox in-page toast." loading="lazy" decoding="async">
-          <figcaption>Cross a threshold and it says so &mdash; once, briefly, on the page you&rsquo;re reading.</figcaption>
-        </figure>
-        <figure class="trio__item">
-          <img src="images/placeholder-privacy.svg" width="416" height="260"
-               alt="Placeholder: illustration of the permissions Tablox asks Chrome for." loading="lazy" decoding="async">
-          <figcaption>No accounts. No analytics. No network requests. It counts tabs and stops.</figcaption>
-        </figure>
+        <div>
+          <h2 class="section__title" data-reveal>The Mental Cost</h2>
+
+          <p class="essay__claim" data-reveal>
+            The problem isn&rsquo;t simply <strong>having tabs</strong>.<br>
+            It&rsquo;s what they can represent.
+          </p>
+
+          <p class="essay__body" data-reveal>
+            Too many unfinished contexts can make it harder to find what
+            matters, decide what to do next, and return to a task without
+            reconstructing where you left off.
+          </p>
+
+          <ul class="beats">
+            <li class="beat" data-reveal>Tab overload isn&rsquo;t a diagnosis.</li>
+            <li class="beat" data-reveal>
+              And your tab count isn&rsquo;t a direct measurement of cognitive load.
+            </li>
+            <li class="beat beat--last" data-reveal>But it is an observable behavior.</li>
+          </ul>
+
+          <p class="essay__close" data-reveal>
+            <strong>Tablox makes that behavior visible.</strong>
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============================= 04 ============================= -->
-  <section class="section section--verdict" id="verdict">
+  <section class="section section--rule" id="science">
     <div class="shell">
-      <h2 class="verdict__q" data-reveal>Maybe.</h2>
-      <p class="verdict__a" data-reveal>Or don&rsquo;t.</p>
-      <p class="verdict__note" data-reveal>That&rsquo;s the point.</p>
-      <p class="verdict__tail" data-reveal>
-        Tablox isn&rsquo;t here to optimize you.<br>
-        It&rsquo;s here to make you notice.
-      </p>
+      <p class="closing-note" data-reveal>Tablox is a <b>behavioral signal, not a brain scanner.</b></p>
+
+      <div class="trio" data-reveal>
+        <figure class="trio__item">
+          <img src="images/placeholder-popup.svg" width="416" height="260"
+               alt="The extension popup: the tab count, the state it falls in, and one short explanation." loading="lazy" decoding="async">
+          <figcaption>Click the icon. One short explanation, then it&rsquo;s gone.</figcaption>
+        </figure>
+        <figure class="trio__item">
+          <img src="images/placeholder-toast.svg" width="416" height="260"
+               alt="The in-page toast: a yellow pill reading &ldquo;Tab archaeology begins&rdquo;, shown at the top of the page you are reading." loading="lazy" decoding="async">
+          <figcaption>Cross a threshold and it says so &mdash; once, briefly, on the page you&rsquo;re reading.</figcaption>
+        </figure>
+        <figure class="trio__item">
+          <img src="images/placeholder-privacy.svg" width="416" height="260"
+               alt="Tablox asks Chrome for one permission, tabs. No accounts, no analytics, no network requests." loading="lazy" decoding="async">
+          <figcaption>No accounts. No analytics. No network requests. It counts tabs and stops.</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -290,6 +345,8 @@
   <section class="section section--rule" id="install">
     <div class="shell">
       <div class="cta" data-reveal>
+        <img class="cta__sticker" src="images/sticker.png" width="400" height="376"
+             alt="" loading="lazy" decoding="async" data-reveal>
         <h2 class="cta__title">Tablox</h2>
         <p class="cta__sub">A checkup for your crowded browser.</p>
 

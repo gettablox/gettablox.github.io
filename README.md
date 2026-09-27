@@ -10,7 +10,7 @@ GitHub Pages serves the repository root as-is.
 index.html                    the whole page
 assets/css/style.css          all styling
 assets/js/main.js             the checkup demo, the hero tab field, reveals
-images/                       placeholders and the OG cover
+images/                       the three UI depictions and the OG cover
 favicon.svg                   the Tablox icon
 sitemap.xml
 .nojekyll
@@ -52,21 +52,51 @@ console.table(STATES.map(({id,label,color,iconColor,badgeText,range}) =>
 "
 ```
 
-## Replacing the image placeholders
+## The product images
 
-Every image is a labelled test card, sized to the frame it sits in. Swap the
-`src` in `index.html` and the new file will drop straight in.
+The three images in section 03 are hand-built SVG depictions of the real UI, all
+416 × 260, all in the same style: `#101216` ground, a dashed rule in a different
+state colour, and the corner crop marks. They are drawn with live `<text>` in
+Martian Mono, so they weigh 2–3 KB each and stay sharp at any size. The
+`placeholder-` filenames are a leftover from when they were labelled test cards;
+they are safe to rename.
 
-| Placeholder | Size | Shows |
-| --- | --- | --- |
-| `images/placeholder-popup.svg` | 416 × 260 | The extension popup. |
-| `images/placeholder-toast.svg` | 416 × 260 | The in-page toast. |
-| `images/placeholder-privacy.svg` | 416 × 260 | Permissions / privacy. |
+| File | Size | Accent | Depicts |
+| --- | --- | --- | --- |
+| `images/placeholder-popup.svg` | 416 × 260 | `#639CFF` | The popup at 5 tabs: the count, `Growing`, and one short explanation. |
+| `images/placeholder-toast.svg` | 416 × 260 | `#FDCF06` | The in-page toast — a `Crowded`-coloured pill reading "Tab archaeology begins". |
+| `images/placeholder-privacy.svg` | 416 × 260 | `#FF6F00` | The one permission Tablox requests (`tabs`), and the three it never asks for. |
 
-None of these three shows the toolbar state indicator, so the page currently
-has no image of the product as it actually appears in a browser. If you want
-that back, commission a toolbar screenshot and drop it into section 02 — that
-frame is gone, so it needs a new wrapper rather than just a new `src`.
+They are drawn from the extension source rather than from impression, so they can
+be re-checked against it at any time:
+
+- The popup follows `src/popup/popup.css`: 208px wide, an 18px/18px/16px padding
+  box, a 2px top rule in `--state-color`, a 34px light count, an 8px dot before
+  the state label, and the explanation at 12px in the muted ink. It shows the
+  count, the label and the explanation — *not* the tab range, which lives in the
+  state table but never reaches the popup.
+- State values are the real ones, resolved by running `getState(5)` against
+  `src/shared/state.js`: label `Growing`, `iconColor` `#2D79FF`, explanation
+  "More information is building up in your browser context." The popup uses
+  `iconColor` rather than the bright badge hue, because the colour appears there
+  only as a thin rule and a small dot.
+- The toast copy and colours come from `STATES`, passed through as
+  `{ text: state.toast, color: state.color, textColor: state.badgeText }`. The
+  pill's `999px` radius and 11px/20px padding come from `src/content/toast.js`.
+- The privacy card reflects `src/manifest.json`, which requests exactly one
+  permission: `tabs`. It deliberately does *not* claim the extension has no host
+  access — a content script matches `<all_urls>` to paint the toast, though it
+  reads nothing from the page. If you ever add a permission, that card is wrong.
+
+If you redraw any of these, measure the text rather than eyeballing it: Martian
+Mono runs about 0.72em per character, so a 30-character line at 9px is ~195px,
+not the ~162px a 0.6em guess would predict. Overflowing text is the easy mistake
+to make here.
+
+None of the three shows the toolbar state indicator, so the page has no image of
+the product as it actually appears in a browser toolbar. That frame was removed
+from section 02, so restoring it needs a new wrapper rather than just a new
+`src`.
 
 ### The social card
 

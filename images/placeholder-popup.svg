@@ -1,17 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416 260" width="416" height="260" role="img" aria-label="Placeholder for a screenshot of the Tablox extension popup">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416 260" width="416" height="260" role="img" aria-label="The Tablox popup: the tab count, the state it falls in, and one short explanation.">
   <defs>
-    <pattern id="g" width="26" height="26" patternUnits="userSpaceOnUse">
+    <pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse">
       <path d="M26 0H0v26" fill="none" stroke="#ffffff" stroke-opacity="0.05"/>
     </pattern>
+    <clipPath id="card">
+      <rect x="104" y="54" width="208" height="152" rx="8"/>
+    </clipPath>
   </defs>
+
   <rect width="416" height="260" fill="#101216"/>
-  <rect width="416" height="260" fill="url(#g)"/>
-  <rect x="20" y="20" width="376" height="220" fill="none" stroke="#639CFF" stroke-opacity="0.5" stroke-dasharray="6 6"/>
-  <path d="M20 60V20h40M356 20h40v40M20 200v40h40M356 240h40v-40" stroke="#626871" stroke-width="1.2" fill="none"/>
-  <g font-family="'Martian Mono', ui-monospace, Menlo, monospace" text-anchor="middle">
-    <text x="208" y="122" fill="#639CFF" font-size="11" letter-spacing="3.4">PLACEHOLDER</text>
-    <text x="208" y="152" fill="#e9eaec" font-size="16" letter-spacing="1">POPUP SCREENSHOT</text>
-    <text x="208" y="180" fill="#626871" font-size="11" letter-spacing="2">416 × 260 · popup.png</text>
+  <rect width="416" height="260" fill="url(#grid)"/>
+  <path d="M396 20H20V240H396V20Z" fill="none" stroke="#639CFF" stroke-opacity="0.5" stroke-dasharray="6 6"/>
+  <path d="M20 60V20H60M356 20H396V60M20 200V240H60M356 240H396V200" stroke="#626871" stroke-width="1.2" fill="none"/>
+
+  <!-- The popup surface: 208px wide, dark scheme, state colour as a 2px top rule. -->
+  <rect x="104" y="54" width="208" height="152" rx="8" fill="#1C1F23" stroke="#2F3439"/>
+  <rect x="104" y="54" width="208" height="2" fill="#2D79FF" clip-path="url(#card)"/>
+
+  <g font-family="'Martian Mono', ui-monospace, Menlo, monospace">
+    <!-- Count: 34px, weight 300, tabular. -->
+    <text x="122" y="97" font-size="30" font-weight="300" letter-spacing="-0.6" fill="#E8EAED">5</text>
+
+    <!-- State: 8px dot in iconColor, then the label. -->
+    <circle cx="126" cy="120" r="4" fill="#2D79FF"/>
+    <text x="137" y="124" font-size="11" font-weight="500" fill="#E8EAED">Growing</text>
+
+    <!-- Explanation: 12px, muted, wrapped to the 172px text column. -->
+    <g font-size="9" fill="#9AA0A6">
+      <text x="122" y="151">More information is</text>
+      <text x="122" y="169">building up in your</text>
+      <text x="122" y="187">browser context.</text>
+    </g>
   </g>
-  <text x="20" y="12" font-family="'Martian Mono', ui-monospace, Menlo, monospace" font-size="9.5" letter-spacing="2" fill="#626871">ASSET 02 / POPUP</text>
 </svg>

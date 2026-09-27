@@ -35,16 +35,6 @@
 
 <a class="skip" href="#checkup">Skip to the checkup</a>
 
-<!-- hero backdrop: images/heroshot.png, run through a palette duotone and faded
-     out ahead of the headline. Derived by scripts/make-hero-shot.py. Placed
-     first so .ambient and .crowd still composite on top of it. -->
-<div class="hero-shot" aria-hidden="true">
-  <picture>
-    <source srcset="images/hero-shot.webp" type="image/webp">
-    <img src="images/hero-shot.png" width="1448" height="1086" alt="" decoding="async">
-  </picture>
-</div>
-
 <!-- ambient layers: grid, glow, grain -->
 <div class="ambient" aria-hidden="true">
   <div class="ambient__grid"></div>
@@ -59,6 +49,29 @@
     <span class="crowd__tabstrip" data-tabstrip></span>
   </div>
   <div class="crowd__tray" data-tray></div>
+</div>
+
+<!-- small abstract tabs drifting in the hero background. Same shapes and
+     material as the .crowd tabstrip, at a fraction of the weight. Purely
+     atmospheric: aria-hidden, pointer-events none, and z-index 0 so .hero
+     keeps every word on top. No script -- the drift is a CSS keyframe with a
+     negative delay per tab, and transform-only, so it stays on the
+     compositor and costs no main-thread work. -->
+<div class="drift" aria-hidden="true">
+  <i class="drift__tab"></i>
+  <i class="drift__tab"></i>
+  <i class="drift__tab"></i>
+  <i class="drift__tab"></i>
+  <i class="drift__tab drift__tab--tile"></i>
+  <i class="drift__tab"></i>
+  <i class="drift__tab"></i>
+  <i class="drift__tab"></i>
+  <i class="drift__tab drift__tab--tile"></i>
+  <i class="drift__tab"></i>
+  <i class="drift__tab"></i>
+  <i class="drift__tab drift__tab--tile"></i>
+  <i class="drift__tab"></i>
+  <i class="drift__tab"></i>
 </div>
 
 <!-- left spine -->

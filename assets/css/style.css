@@ -597,7 +597,237 @@ a { color: inherit; }
 }
 
 /* ==========================================================================
-   01 — Checkup: the demo
+   01 — Why tabs accumulate
+   ========================================================================== */
+
+/* --- the essay: left-aligned long form inside a centred section ---------- */
+
+.essay {
+  justify-self: stretch;
+  width: 100%;
+  text-align: left;
+}
+
+.essay__head { margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+
+/* Four reasons, as a hairline-ruled grid rather than boxed cards.
+   Two columns, never auto-fit: at four items, auto-fit lands on 3 + 1 and
+   orphans the last reason. */
+.reasons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.75rem, 3.5vw, 3rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .reasons { grid-template-columns: repeat(2, 1fr); }
+}
+
+.reason {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.1rem;
+}
+
+.reason__n {
+  display: block;
+  margin-bottom: 0.85rem;
+  font: 600 0.7rem/1 var(--mono);
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+}
+
+.reason__t {
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  font-variation-settings: "wdth" 104;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+
+.reason__b {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  text-wrap: pretty;
+}
+.reason__b em { font-style: italic; color: var(--ink); }
+
+.essay__split {
+  height: 1px;
+  margin: clamp(3.5rem, 8vw, 6rem) 0;
+  background: var(--rule);
+}
+
+/* The hinge of the whole page: short, wide, set larger than the body. */
+.essay__claim {
+  margin: 0 0 clamp(1.75rem, 4vw, 2.25rem);
+  max-width: 26ch;
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+  font-weight: 500;
+  font-variation-settings: "wdth" 104;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.essay__claim strong { font-weight: 700; color: var(--ink); }
+
+.essay__body {
+  margin: 0 0 clamp(2rem, 4vw, 2.75rem);
+  max-width: 62ch;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  text-wrap: pretty;
+}
+
+/* Three beats that concede, concede, then land. */
+.beats {
+  margin: 0 0 clamp(2rem, 4vw, 2.75rem);
+  padding: 0;
+  list-style: none;
+  max-width: 62ch;
+}
+
+.beat {
+  position: relative;
+  margin-bottom: 0.6rem;
+  padding-left: 1.4rem;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+.beat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 6px;
+  height: 1px;
+  background: var(--ink-faint);
+}
+.beat--last { color: var(--ink); font-weight: 500; }
+.beat--last::before { width: 10px; background: var(--ink); }
+
+.essay__close {
+  margin: 0;
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--rule-strong);
+  max-width: 62ch;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  font-variation-settings: "wdth" 104;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   02 — What's going on
+   ========================================================================== */
+
+.does-doesnt {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+@media (max-width: 760px) {
+  .does-doesnt { grid-template-columns: 1fr; }
+}
+
+.does-doesnt__h {
+  margin: 0 0 1.25rem;
+  font: 500 0.72rem/1 var(--mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.does-doesnt__col--no ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.does-doesnt__col--no li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: var(--ink-faint);
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.35;
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--overloaded) 70%, transparent);
+  text-decoration-thickness: 1px;
+}
+.does-doesnt__col--no li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  width: 11px;
+  height: 1px;
+  background: var(--overloaded);
+}
+
+.does-doesnt__big {
+  margin: 0;
+  font-size: clamp(1.8rem, 4.4vw, 3.2rem);
+  font-weight: 700;
+  font-variation-settings: "wdth" 112;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  background: linear-gradient(96deg, var(--focused), var(--growing) 38%, var(--crowded) 66%, var(--fragmented) 84%, var(--overloaded));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ==========================================================================
+   Figures & placeholders
+   ========================================================================== */
+
+.trio__item figcaption {
+  margin-top: 0.85rem;
+  font: 400 0.72rem/1.5 var(--mono);
+  color: var(--ink-faint);
+  max-width: 48ch;
+}
+
+.trio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+.trio__item { margin: 0; }
+.trio__item img {
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--panel);
+}
+
+.closing-note {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.6vw, 2.05rem);
+  font-weight: 500;
+  font-variation-settings: "wdth" 104;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+.closing-note b { font-weight: 700; color: var(--ink); }
+
+/* ==========================================================================
+   03 — Checkup: the demo
    ========================================================================== */
 
 .demo {
@@ -991,236 +1221,6 @@ a { color: inherit; }
     row-gap: 0.5rem;
   }
   .state__note { grid-column: 3 / -1; }
-}
-
-/* ==========================================================================
-   02 — What's going on
-   ========================================================================== */
-
-.does-doesnt {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-}
-
-@media (max-width: 760px) {
-  .does-doesnt { grid-template-columns: 1fr; }
-}
-
-.does-doesnt__h {
-  margin: 0 0 1.25rem;
-  font: 500 0.72rem/1 var(--mono);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
-.does-doesnt__col--no ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.6rem;
-}
-.does-doesnt__col--no li {
-  position: relative;
-  padding-left: 1.6rem;
-  color: var(--ink-faint);
-  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
-  line-height: 1.35;
-  text-decoration: line-through;
-  text-decoration-color: color-mix(in srgb, var(--overloaded) 70%, transparent);
-  text-decoration-thickness: 1px;
-}
-.does-doesnt__col--no li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.52em;
-  width: 11px;
-  height: 1px;
-  background: var(--overloaded);
-}
-
-.does-doesnt__big {
-  margin: 0;
-  font-size: clamp(1.8rem, 4.4vw, 3.2rem);
-  font-weight: 700;
-  font-variation-settings: "wdth" 112;
-  line-height: 1;
-  letter-spacing: -0.035em;
-  text-wrap: balance;
-  background: linear-gradient(96deg, var(--focused), var(--growing) 38%, var(--crowded) 66%, var(--fragmented) 84%, var(--overloaded));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* ==========================================================================
-   Figures & placeholders
-   ========================================================================== */
-
-.trio__item figcaption {
-  margin-top: 0.85rem;
-  font: 400 0.72rem/1.5 var(--mono);
-  color: var(--ink-faint);
-  max-width: 48ch;
-}
-
-.trio {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  margin-top: clamp(3rem, 7vw, 5rem);
-}
-.trio__item { margin: 0; }
-.trio__item img {
-  width: 100%;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  background: var(--panel);
-}
-
-.closing-note {
-  margin: 0;
-  font-size: clamp(1.35rem, 2.6vw, 2.05rem);
-  font-weight: 500;
-  font-variation-settings: "wdth" 104;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-  max-width: 24ch;
-  text-wrap: balance;
-}
-.closing-note b { font-weight: 700; color: var(--ink); }
-
-/* ==========================================================================
-   03 — Why tabs accumulate
-   ========================================================================== */
-
-/* --- the essay: left-aligned long form inside a centred section ---------- */
-
-.essay {
-  justify-self: stretch;
-  width: 100%;
-  text-align: left;
-}
-
-.essay__head { margin-bottom: clamp(2.5rem, 6vw, 4rem); }
-
-/* Four reasons, as a hairline-ruled grid rather than boxed cards.
-   Two columns, never auto-fit: at four items, auto-fit lands on 3 + 1 and
-   orphans the last reason. */
-.reasons {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.75rem, 3.5vw, 3rem);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-@media (min-width: 720px) {
-  .reasons { grid-template-columns: repeat(2, 1fr); }
-}
-
-.reason {
-  border-top: 1px solid var(--rule);
-  padding-top: 1.1rem;
-}
-
-.reason__n {
-  display: block;
-  margin-bottom: 0.85rem;
-  font: 600 0.7rem/1 var(--mono);
-  letter-spacing: 0.2em;
-  color: var(--ink-faint);
-}
-
-.reason__t {
-  margin: 0 0 0.5rem;
-  font-size: 1.0625rem;
-  font-weight: 600;
-  font-variation-settings: "wdth" 104;
-  line-height: 1.25;
-  letter-spacing: -0.012em;
-  color: var(--ink);
-}
-
-.reason__b {
-  margin: 0;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--ink-dim);
-  text-wrap: pretty;
-}
-.reason__b em { font-style: italic; color: var(--ink); }
-
-.essay__split {
-  height: 1px;
-  margin: clamp(3.5rem, 8vw, 6rem) 0;
-  background: var(--rule);
-}
-
-/* The hinge of the whole page: short, wide, set larger than the body. */
-.essay__claim {
-  margin: 0 0 clamp(1.75rem, 4vw, 2.25rem);
-  max-width: 26ch;
-  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
-  font-weight: 500;
-  font-variation-settings: "wdth" 104;
-  line-height: 1.14;
-  letter-spacing: -0.025em;
-  text-wrap: balance;
-}
-.essay__claim strong { font-weight: 700; color: var(--ink); }
-
-.essay__body {
-  margin: 0 0 clamp(2rem, 4vw, 2.75rem);
-  max-width: 62ch;
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  color: var(--ink-dim);
-  text-wrap: pretty;
-}
-
-/* Three beats that concede, concede, then land. */
-.beats {
-  margin: 0 0 clamp(2rem, 4vw, 2.75rem);
-  padding: 0;
-  list-style: none;
-  max-width: 62ch;
-}
-
-.beat {
-  position: relative;
-  margin-bottom: 0.6rem;
-  padding-left: 1.4rem;
-  font-size: 1.0625rem;
-  line-height: 1.55;
-  color: var(--ink-dim);
-}
-.beat::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.68em;
-  width: 6px;
-  height: 1px;
-  background: var(--ink-faint);
-}
-.beat--last { color: var(--ink); font-weight: 500; }
-.beat--last::before { width: 10px; background: var(--ink); }
-
-.essay__close {
-  margin: 0;
-  padding-top: 1.35rem;
-  border-top: 1px solid var(--rule-strong);
-  max-width: 62ch;
-  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
-  font-weight: 600;
-  font-variation-settings: "wdth" 104;
-  letter-spacing: -0.015em;
-  color: var(--ink);
 }
 
 /* ==========================================================================

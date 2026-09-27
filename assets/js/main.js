@@ -268,6 +268,18 @@
 
   let lastCount = -1;
 
+  // The crowd's resting opacity is --crowd-opacity in the stylesheet. Read it
+  // once, lazily, so the first scroll frame cannot race stylesheet parsing and
+  // so the fade below stays in step with the rule it is scaling.
+  let crowdRestOpacity = null;
+  function crowdOpacity() {
+    if (crowdRestOpacity === null) {
+      const n = parseFloat(getComputedStyle(root).getPropertyValue('--crowd-opacity'));
+      crowdRestOpacity = Number.isFinite(n) ? n : 0.8;
+    }
+    return crowdRestOpacity;
+  }
+
   function paintCrowd(count) {
     if (count === lastCount) return;
     lastCount = count;
@@ -302,7 +314,7 @@
       setAccent(dialState.color);
       if (crowd) {
         const fade = Math.max(0, 1 - (window.scrollY - height * 0.85) / (height * 0.5));
-        crowd.style.opacity = String(0.5 * fade);
+        crowd.style.opacity = String(crowdOpacity() * fade);
         if (fade === 0) crowd.style.visibility = 'hidden';
         else crowd.style.visibility = 'visible';
       }

@@ -350,14 +350,6 @@ a { color: inherit; }
   transition: background 500ms ease, box-shadow 500ms ease;
 }
 
-.section__index {
-  margin: 0 0 1.25rem;
-  font: 500 0.72rem/1 var(--mono);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
 .section__title {
   margin: 0 0 1rem;
   font-size: clamp(2rem, 5.2vw, 3.6rem);
@@ -1029,9 +1021,6 @@ a { color: inherit; }
 .prose p:last-child { margin-bottom: 0; }
 .prose b { color: var(--ink); font-weight: 600; }
 
-.prose--lead { margin-bottom: clamp(3rem, 7vw, 5rem); }
-.prose--lead p:first-child { color: var(--ink); }
-
 .prose--sci {
   font-size: clamp(1.05rem, 1.5vw, 1.25rem);
   line-height: 1.55;
@@ -1107,16 +1096,6 @@ a { color: inherit; }
    Figures & placeholders
    ========================================================================== */
 
-.shot {
-  margin: clamp(3rem, 7vw, 5rem) 0 0;
-}
-.shot img {
-  width: 100%;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  background: var(--panel);
-}
-.shot figcaption,
 .trio__item figcaption {
   margin-top: 0.85rem;
   font: 400 0.72rem/1.5 var(--mono);
@@ -1191,7 +1170,6 @@ a { color: inherit; }
 }
 
 .section--verdict .shell { display: grid; justify-items: center; }
-.section--verdict .section__index { margin-bottom: clamp(2rem, 5vw, 3rem); }
 
 .verdict__q {
   margin: 0;

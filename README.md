@@ -59,14 +59,14 @@ Every image is a labelled test card, sized to the frame it sits in. Swap the
 
 | Placeholder | Size | Shows |
 | --- | --- | --- |
-| `images/placeholder-toolbar.svg` | 1200 × 750 | Tablox in the Chrome toolbar. The dashed band at the top marks the strip worth cropping for the hero. |
 | `images/placeholder-popup.svg` | 416 × 260 | The extension popup. |
 | `images/placeholder-toast.svg` | 416 × 260 | The in-page toast. |
 | `images/placeholder-privacy.svg` | 416 × 260 | Permissions / privacy. |
 
-A good toolbar screenshot is the single highest-value image on the page — it is
-the only place the actual product appears in a real browser. The live demo in
-section 01 shows the mechanic; the screenshot shows the thing.
+None of these three shows the toolbar state indicator, so the page currently
+has no image of the product as it actually appears in a browser. If you want
+that back, commission a toolbar screenshot and drop it into section 02 — that
+frame is gone, so it needs a new wrapper rather than just a new `src`.
 
 ### The social card
 

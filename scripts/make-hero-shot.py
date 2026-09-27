@@ -46,15 +46,24 @@ LIGHT_STOPS = [(0.00, 0x96, 0x9E, 0xA8),   # open: above the headline
                (0.60, 0x50, 0x56, 0x5C),
                (1.00, 0x50, 0x56, 0x5C)]
 
-# Vertical stops: (position in image, alpha). Fades to zero before the subhead,
-# which starts at 0.67 of the hero -- so everything below the headline is untouched.
-V_STOPS = [(0.00, 1.00), (0.16, 0.74), (0.32, 0.46), (0.48, 0.22), (0.66, 0.08), (0.85, 0.00), (1.00, 0.00)]
+# Vertical stops: (position in image, alpha).
+#
+# The mask deliberately does NOT peak at the top. The band from 0.00 to 0.12 is
+# empty -- the kicker starts at 0.127 -- so a peak there just stacks the shot's
+# densest row against the top edge of the viewport and reads as a slab. Starting
+# soft and peaking at 0.30 instead puts the photo's weight behind the headline,
+# which is the only place it has to compete with anything.
+#
+# Fades to zero by 0.70, so the subhead (0.667) and everything below it are
+# left essentially untouched.
+V_STOPS = [(0.00, 0.20), (0.14, 0.44), (0.30, 0.54), (0.46, 0.36), (0.60, 0.14), (0.70, 0.00), (1.00, 0.00)]
 
 # The shot is genuinely low-contrast (mean luminance 61, p95 113) and its top
 # region sits at only 44-60, so brightening the ramp alone barely registers.
-# Stretching the source's levels first is what actually makes it present:
-# top-of-frame peak composite goes 62 -> 92 with no change to the ramp.
-LEVELS = (10, 150)            # (black point, white point) applied to source luma
+# Stretching the source's levels first is what makes it register at all: the raw
+# top row is so dim that brightening the ramp alone barely moves it. The window
+# is kept modest (175, not 150) so the shot stays a backdrop rather than a slab.
+LEVELS = (10, 175)            # (black point, white point) applied to source luma
 H_RANGE = (0.40, 1.00)       # left -> right; the left edge carries the kicker (small
                           # mono text) and the head of the headline, so it stays quiet
 

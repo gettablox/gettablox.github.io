@@ -327,99 +327,6 @@ a { color: inherit; }
 }
 
 /* ==========================================================================
-   Drift: small abstract tabs floating in the hero background
-   ========================================================================== */
-
-/* Atmospheric only. aria-hidden in the markup, pointer-events none here, and
-   z-index 0 so .hero (z-index 1) keeps the type on top. It sits after .crowd
-   in the DOM, so the tabs float in front of the big window mock but behind
-   every word. Shapes reuse the .crowd tab language -- 1px --rule border, 6px
-   top radius, the same 2% white fill -- so they read as the same product. */
-.drift {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100svh;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-  opacity: 0.55;
-  mask-image: radial-gradient(115% 78% at 50% 30%, #000 32%, transparent 85%);
-}
-
-.drift__tab {
-  position: absolute;
-  /* --x is a percentage but --w is fixed px, so the widest right-hand tabs
-     would hang off a narrow viewport and get clipped. Clamping keeps all
-     fourteen on screen at any width without a separate mobile rule. */
-  left: clamp(6px, var(--x), calc(100% - var(--w) - 6px));
-  top: var(--y);
-  width: var(--w);
-  height: var(--h);
-  border: 1px solid var(--rule);
-  border-bottom: none;
-  border-radius: 6px 6px 0 0;
-  background: rgba(255, 255, 255, 0.02);
-  animation: drift var(--dur) var(--delay) ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-/* a few read as open windows rather than browser tabs */
-.drift__tab--tile {
-  border-bottom: 1px solid var(--rule);
-  border-radius: 5px;
-}
-
-/* Scroll-linked parallax. The layer lags the page as you scroll through the
-   hero, so the tabs read as depth rather than as stickers on the copy. The
-   hero is one viewport tall, so the whole gesture is ~100vh of scroll, which
-   is why the offset stays deliberately small.
-
-   Gated two ways. Scroll-driven animations are not in Firefox yet, so without
-   the @supports the tabs would sit frozen on scroll there; inside it, the
-   no-preference guard keeps this off entirely for anyone who has asked for
-   reduced motion. Everyone keeps the ambient drift below either way. */
-@supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .drift {
-      animation: driftLag linear both;
-      animation-timeline: scroll(root block);
-      animation-range: 0 100svh;
-    }
-  }
-}
-
-@keyframes driftLag {
-  from { transform: translateY(0); }
-  to   { transform: translateY(16vh); }
-}
-
-/* transform only, so this stays on the compositor */
-@keyframes drift {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(var(--dx), var(--dy), 0); }
-}
-
-/* Negative delays so the tabs start mid-cycle rather than all in phase, and
-   everything is kept in the upper two-thirds: the subhead starts at 0.67 of
-   the hero and the readout sits below that, so the lower copy stays clear. */
-.drift__tab:nth-child(1) { --x: 6%; --y: 14%; --w: 72px; --h: 26px; --dur: 24s; --delay: -4s; --dx: 12px; --dy: -18px; }
-.drift__tab:nth-child(2) { --x: 17%; --y: 30%; --w: 58px; --h: 24px; --dur: 28s; --delay: -11s; --dx: -14px; --dy: -22px; }
-.drift__tab:nth-child(3) { --x: 27%; --y: 8%; --w: 88px; --h: 28px; --dur: 31s; --delay: -19s; --dx: 16px; --dy: -14px; }
-.drift__tab:nth-child(4) { --x: 38%; --y: 24%; --w: 64px; --h: 25px; --dur: 22s; --delay: -7s; --dx: 10px; --dy: -20px; }
-.drift__tab:nth-child(5) { --x: 49%; --y: 12%; --w: 76px; --h: 27px; --dur: 27s; --delay: -22s; --dx: -12px; --dy: -16px; }
-.drift__tab:nth-child(6) { --x: 60%; --y: 33%; --w: 52px; --h: 23px; --dur: 34s; --delay: -3s; --dx: 14px; --dy: -24px; }
-.drift__tab:nth-child(7) { --x: 71%; --y: 17%; --w: 84px; --h: 28px; --dur: 25s; --delay: -14s; --dx: -16px; --dy: -18px; }
-.drift__tab:nth-child(8) { --x: 83%; --y: 27%; --w: 60px; --h: 24px; --dur: 30s; --delay: -9s; --dx: 12px; --dy: -20px; }
-.drift__tab:nth-child(9) { --x: 92%; --y: 12%; --w: 70px; --h: 26px; --dur: 23s; --delay: -17s; --dx: -10px; --dy: -15px; }
-.drift__tab:nth-child(10) { --x: 11%; --y: 46%; --w: 66px; --h: 25px; --dur: 29s; --delay: -5s; --dx: 15px; --dy: -17px; }
-.drift__tab:nth-child(11) { --x: 33%; --y: 44%; --w: 56px; --h: 23px; --dur: 26s; --delay: -16s; --dx: -13px; --dy: -21px; }
-.drift__tab:nth-child(12) { --x: 57%; --y: 48%; --w: 74px; --h: 27px; --dur: 33s; --delay: -12s; --dx: 11px; --dy: -19px; }
-.drift__tab:nth-child(13) { --x: 78%; --y: 44%; --w: 62px; --h: 24px; --dur: 21s; --delay: -8s; --dx: -14px; --dy: -16px; }
-.drift__tab:nth-child(14) { --x: 95%; --y: 40%; --w: 54px; --h: 23px; --dur: 32s; --delay: -20s; --dx: 10px; --dy: -23px; }
-
-/* ==========================================================================
    Type primitives
    ========================================================================== */
 
@@ -1453,8 +1360,6 @@ a { color: inherit; }
   }
   [data-reveal] { opacity: 1; transform: none; }
   .crowd { display: none; }
-  .drift,
-  .drift__tab { animation: none; }
 }
 
 @media (prefers-contrast: more) {
@@ -1488,7 +1393,7 @@ a { color: inherit; }
 
 /* print: a plain report */
 @media print {
-  .ambient, .crowd, .drift, .spine, .scroll-cue, .hero__readout, .demo { display: none !important; }
+  .ambient, .crowd, .spine, .scroll-cue, .hero__readout, .demo { display: none !important; }
   body { background: #fff; color: #000; }
   .does-doesnt__big { color: #000; -webkit-text-fill-color: #000; }
 

@@ -252,33 +252,33 @@ a { color: inherit; }
 }
 
 /* ==========================================================================
-   The tab crowd — a window that fills up behind the hero
+   The tab crowd
    ========================================================================== */
 
+/* The tab crowd — a browser bar that fills up as you read the hero.
+   Lives in normal flow just below the hero (under the scroll cue and
+   readout), so it scrolls away with the page instead of sticking to the
+   viewport. */
 .crowd {
-  position: fixed;
+  position: relative;
   z-index: 0;
-  left: 50%;
-  top: 0;
-  width: min(1180px, 96vw);
-  height: 100vh;
-  transform: translateX(-50%) translateY(-6vh) scale(0.94);
+  width: 100%;
+  margin-block: clamp(0.5rem, 2vw, 1.5rem) clamp(2.5rem, 6vw, 4.5rem);
   opacity: var(--crowd-opacity);
   pointer-events: none;
-  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.5) 62%, transparent 92%);
-  transition: opacity 600ms ease;
 }
 
 .crowd__chrome {
-  height: 62px;
+  height: 52px;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding-inline: 1rem;
-  border-bottom: 1px solid var(--rule);
-  border-radius: 10px 10px 0 0;
+  gap: 0.75rem;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
   background: rgba(20, 23, 28, 0.5);
   backdrop-filter: blur(2px);
+  overflow: hidden;
 }
 
 .crowd__dots { display: flex; gap: 6px; flex: none; }
@@ -290,16 +290,22 @@ a { color: inherit; }
 
 .crowd__tabstrip {
   flex: 1;
+  min-width: 0;
   display: flex;
-  gap: 6px;
+  gap: 4px;
   overflow: hidden;
-  height: 34px;
-  align-items: stretch;
+  height: 32px;
+  align-self: flex-end;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 
 .crowd__tabstrip i {
   flex: 1 1 0;
-  min-width: 46px;
+  min-width: 0;
+  max-width: 110px;
+  height: 30px;
+  align-self: flex-end;
   border: 1px solid var(--rule-strong);
   border-bottom: none;
   border-radius: 6px 6px 0 0;
@@ -311,24 +317,6 @@ a { color: inherit; }
 @keyframes tabIn {
   from { transform: scaleY(0.1); opacity: 0; }
   to { transform: scaleY(1); opacity: 1; }
-}
-
-.crowd__tray {
-  position: absolute;
-  inset: 62px 0 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
-  gap: 8px;
-  padding: 1rem;
-  align-content: start;
-}
-
-.crowd__tray i {
-  height: 54px;
-  border: 1px solid var(--rule-strong);
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.11);
-  animation: tabIn 460ms cubic-bezier(0.2, 0.9, 0.25, 1) backwards;
 }
 
 /* ==========================================================================
@@ -534,8 +522,9 @@ a { color: inherit; }
 
 .scroll-cue {
   position: absolute;
-  left: var(--gut);
+  left: max(var(--gut), calc((100vw - var(--shell)) / 2 + var(--gut)));
   bottom: 1.75rem;
+  z-index: 2;
   margin: 0;
   font: 400 0.62rem/1 var(--mono);
   letter-spacing: 0.28em;
@@ -557,11 +546,19 @@ a { color: inherit; }
   50% { transform: translateX(8px); opacity: 1; }
 }
 
+/* The shell gains 40px of left padding on wide screens (room for the spine
+   drawer), so the cue needs the same nudge to stay on the content edge. */
+@media (min-width: 1240px) {
+  .scroll-cue {
+    left: calc((100vw - var(--shell)) / 2 + var(--gut) + 40px);
+  }
+}
+
 /* --- hero readout ------------------------------------------------------- */
 
 .hero__readout {
   position: absolute;
-  right: var(--gut);
+  right: max(var(--gut), calc((100vw - var(--shell)) / 2 + var(--gut)));
   bottom: 1.5rem;
   z-index: 2;
   width: min(210px, 42vw);
@@ -1370,7 +1367,6 @@ a { color: inherit; }
     transition-duration: 0.001ms !important;
   }
   [data-reveal] { opacity: 1; transform: none; }
-  .crowd { display: none; }
 }
 
 @media (prefers-contrast: more) {
@@ -1386,7 +1382,6 @@ a { color: inherit; }
    ========================================================================== */
 
 @media (max-width: 640px) {
-  .crowd { display: none; }
   .hero { min-height: auto; }
   .hero__readout {
     position: static;
@@ -1396,10 +1391,6 @@ a { color: inherit; }
   .hero__sub { max-width: none; }
   .hero__promise { max-width: none; }
   .footer__inner { flex-direction: column; align-items: flex-start; }
-}
-
-@media (min-width: 641px) and (max-width: 1023px) {
-  .crowd { opacity: 0.32; }
 }
 
 /* print: a plain report */

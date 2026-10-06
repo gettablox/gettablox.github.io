@@ -83,6 +83,11 @@
 
   const MAX_TABS = 20;
 
+  // Tabs shown in the hero chrome bar: 1 at the top, CROWD_MAX on exit.
+  // Kept separate from MAX_TABS (the demo mock's pool) so the strip and
+  // the readout always agree.
+  const CROWD_MAX = 17;
+
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
@@ -106,9 +111,7 @@
 
   const root = document.documentElement;
   const hero = $('.hero');
-  const crowd = $('#crowd');
   const strip = $('[data-tabstrip]');
-  const tray = $('[data-tray]');
   const dial = $('#tabcount');
   const demo = $('.demo');
   const rows = $$('.state');
@@ -116,6 +119,7 @@
   const revealTargets = $$('[data-reveal]');
 
   const readout = {
+    box: $('.hero__readout'),
     count: $('[data-readout-count]'),
     state: $('[data-readout-state]'),
     bar: $('[data-readout-bar]'),
@@ -258,39 +262,34 @@
 
   const crowdNodes = [];
 
-  if (strip && tray) {
-    for (let i = 0; i < MAX_TABS; i += 1) {
+  if (strip) {
+    for (let i = 0; i < CROWD_MAX; i += 1) {
       const node = document.createElement('i');
-      (i < 9 ? strip : tray).appendChild(node);
+      strip.appendChild(node);
       crowdNodes.push(node);
     }
   }
 
   let lastCount = -1;
 
-  // The crowd's resting opacity is --crowd-opacity in the stylesheet. Read it
-  // once, lazily, so the first scroll frame cannot race stylesheet parsing and
-  // so the fade below stays in step with the rule it is scaling.
-  let crowdRestOpacity = null;
-  function crowdOpacity() {
-    if (crowdRestOpacity === null) {
-      const n = parseFloat(getComputedStyle(root).getPropertyValue('--crowd-opacity'));
-      crowdRestOpacity = Number.isFinite(n) ? n : 0.8;
-    }
-    return crowdRestOpacity;
-  }
-
   function paintCrowd(count) {
     if (count === lastCount) return;
     lastCount = count;
+    const state = getState(count);
     crowdNodes.forEach((node, i) => {
       const on = i < count;
       node.style.display = on ? '' : 'none';
-      if (on) node.style.animationDelay = `${(i % 9) * 45}ms`;
+      // All tabs in the strip appear together — no stagger, so the strip
+      // always matches the readout count exactly.
+      if (on) node.style.animationDelay = '0ms';
     });
     if (readout.count) readout.count.textContent = String(count);
-    if (readout.state) readout.state.textContent = getState(count).label;
-    if (readout.bar) readout.bar.style.setProperty('--fill', `${(count / MAX_TABS) * 100}%`);
+    if (readout.state) readout.state.textContent = state.label;
+    if (readout.bar) readout.bar.style.setProperty('--fill', `${(count / CROWD_MAX) * 100}%`);
+    // The readout keeps its own count's colour. Without this it inherits
+    // --accent from :root, which follows the demo dial past the hero —
+    // so at 17 tabs (Overloaded, red) it would glow the dial's yellow.
+    readout.box?.style.setProperty('--accent', state.color);
   }
 
   function onScroll() {
@@ -299,25 +298,14 @@
     const height = hero.offsetHeight || 1;
     const p = Math.min(1, Math.max(0, window.scrollY / (height * 0.8)));
 
-    // 1 tab at the top of the hero, 17 by the time you leave it.
-    const count = 1 + Math.round(p * 16);
+    // 1 tab at the top of the hero, CROWD_MAX by the time you leave it.
+    const count = 1 + Math.round(p * (CROWD_MAX - 1));
     paintCrowd(count);
 
     if (inHero()) {
       setAccent(getState(count).color);
-      // Scrolling back up has to undo the fade, or the field stays invisible.
-      if (crowd) {
-        crowd.style.opacity = '';
-        crowd.style.visibility = '';
-      }
     } else {
       setAccent(dialState.color);
-      if (crowd) {
-        const fade = Math.max(0, 1 - (window.scrollY - height * 0.85) / (height * 0.5));
-        crowd.style.opacity = String(crowdOpacity() * fade);
-        if (fade === 0) crowd.style.visibility = 'hidden';
-        else crowd.style.visibility = 'visible';
-      }
     }
   }
 

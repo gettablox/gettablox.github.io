@@ -42,15 +42,6 @@
   <div class="ambient__grain"></div>
 </div>
 
-<!-- the tab field: a window that fills up as you read -->
-<div class="crowd" id="crowd" aria-hidden="true">
-  <div class="crowd__chrome">
-    <span class="crowd__dots"><i></i><i></i><i></i></span>
-    <span class="crowd__tabstrip" data-tabstrip></span>
-  </div>
-  <div class="crowd__tray" data-tray></div>
-</div>
-
 <!-- left spine -->
 <nav class="spine" aria-label="Sections">
   <a class="spine__mark" href="#top" aria-label="Tablox, back to top">
@@ -110,6 +101,16 @@
 
     <p class="scroll-cue" aria-hidden="true"><span>scroll</span></p>
   </section>
+
+  <!-- the tab field: fills up as you read the hero, sits below it -->
+  <div class="shell">
+    <div class="crowd" id="crowd" aria-hidden="true">
+      <div class="crowd__chrome">
+        <span class="crowd__dots"><i></i><i></i><i></i></span>
+        <span class="crowd__tabstrip" data-tabstrip></span>
+      </div>
+    </div>
+  </div>
 
   <!-- ============================= 01 ============================= -->
   <section class="section" id="why-tabs">
